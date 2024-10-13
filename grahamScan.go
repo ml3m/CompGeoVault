@@ -6,6 +6,8 @@ package main
 import (
 	"fmt"
 	"math"
+	"math/rand"
+    "time"
 	"sort"
 )
 
@@ -23,6 +25,7 @@ func polarAngle(a, b Point) float64 {
  Orientation of a simple polygon 
  https://en.wikipedia.org/wiki/Curve_orientation#Orientation_of_a_simple_polygon
  find det() of this:
+
  x1 y1 1
  x2 y2 1
  x3 y3 1
@@ -36,7 +39,6 @@ func orientation(A, B, C Point) float64{
     // this is the det of the matrix
     return (B.x*C.y + A.x*B.y + A.y*C.x) - (A.y*B.x + B.y*C.x + A.x*C.y)
 }
-
 
 func grahamScan(points []Point) []Point {
 
@@ -77,11 +79,50 @@ func grahamScan(points []Point) []Point {
     return hull_list
 }
 
-func main(){
-    points := []Point{{0, 3}, {1, 1}, {2, 2}, {4, 4},
-                      {0, 0}, {1, 2}, {3, 1}, {3, 3}};
-    hull_list := grahamScan(points)
-    fmt.Println(hull_list)
+func GenerateRandomPoints(n int) []Point {
+    rand.Seed(time.Now().UnixNano()) // Seed the random number generator.
+    points := make([]Point, n)
+
+    for i := 0; i < n; i++ {
+        points[i] = Point{
+            x: rand.Float64()*200 - 10000, // Generate a random float between -100 and 100 for X.
+            y: rand.Float64()*200 - 10000, // Generate a random float between -100 and 100 for Y.
+        }
+    }
+
+    return points
 }
 
+func main(){
+    /*
+    // for some testing  (geogebra)
+    points := []Point{{0, 3}, {1, 1}, {2, 2}, {4, 4},
+                      {0, 0}, {1, 2}, {3, 1}, {3, 3}};
+    */
 
+    // some tests
+    /*
+        ➜  GrahamScan git:(main) ✗ go run grahamScan.go
+        Generated 10000000 random points in 330.75ms
+        Generated hull in 10.916514417s with 43 points
+
+        Generated 100000000 random points in 4.033935417s
+        Generated hull in 2m36.6532265s with 48 points
+    */
+
+    n := 100000000
+    
+    startTime := time.Now()
+    points := GenerateRandomPoints(n)
+    elapsedTime := time.Since(startTime) 
+
+    fmt.Printf("Generated %d random points in %s\n", n, elapsedTime)
+
+    startTime = time.Now()
+    hull_list := grahamScan(points)
+    elapsedTime = time.Since(startTime) 
+
+    fmt.Printf("Generated hull in %s with %d points\n", elapsedTime, len(hull_list))
+
+    //fmt.Println(hull_list)
+}
