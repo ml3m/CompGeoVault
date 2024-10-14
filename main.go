@@ -1,16 +1,23 @@
 // testing on geogebra
-//plist = {(0,3),(1,1),(2,2),(4,4),(0,0),(1,2),(3,1),(3,3)}
-//
+// plist = {(0,3),(1,1),(2,2),(4,4),(0,0),(1,2),(3,1),(3,3)}
 package main
 
 import (
-    "fmt"
-    "time"
-    "grahamScan/visualizer"
-    "grahamScan/algorithms"
+	"flag"
+	"fmt"
+	"time"
+    "path/filepath"
+
+	"grahamScan/algorithms"
+	"grahamScan/visualizer"
 )
 
-func benchmark(n int) {
+func benchmark1(n int, filename string) {
+
+    if filepath.Ext(filename) != ".png" {
+        filename += ".png"
+    }
+
     startTime := time.Now()
     points := algorithms.GenerateRandomPoints(n)
     elapsedTime := time.Since(startTime)
@@ -19,24 +26,64 @@ func benchmark(n int) {
     startTime = time.Now()
     hull_list := algorithms.GrahamScan(points)
     elapsedTime = time.Since(startTime)
-    fmt.Printf("Generated hull in %s with %d points\n", elapsedTime, len(hull_list))
+    fmt.Printf("Using GrahamScan Algorithm\nGenerated hull in %s with %d points\n", elapsedTime, len(hull_list))
 
     p, err := visualizer.CreatePlot(points, hull_list)
     if err != nil {
         panic(err)
     }
 
-    if err := visualizer.SavePlot(p, "hull1.png"); err != nil {
+    if err := visualizer.SavePlot(p, filename); err != nil {
         panic(err)
     }
 
-    fmt.Println("Plot saved as hull.png")
+    fmt.Printf("Plot saved as: %s", filename)
+}
+
+func benchmark2(n int, filename string) {
+
+    if filepath.Ext(filename) != ".png" {
+        filename += ".png"
+    }
+
+    startTime := time.Now()
+    points := algorithms.GenerateRandomPoints(n)
+    elapsedTime := time.Since(startTime)
+    fmt.Printf("Generated %d random points in %s\n", n, elapsedTime)
+
+    startTime = time.Now()
+    hull_list := algorithms.JarvisMarch(points)
+    elapsedTime = time.Since(startTime)
+    fmt.Printf("Using JarvisMarch Algorithm\nGenerated hull in %s with %d points\n", elapsedTime, len(hull_list))
+
+
+    p, err := visualizer.CreatePlot(points, hull_list)
+    if err != nil {
+        panic(err)
+    }
+
+    if err := visualizer.SavePlot(p, filename); err != nil {
+        panic(err)
+    }
+
+    fmt.Printf("Plot saved as: %s", filename)
 }
 
 func main(){
 
-    n := 2
-    benchmark(n)
+    n := flag.Int("n", 50, "Number of random points to generate")
+    filename := flag.String("f", "hull.png", "Output .png filename for the plot")
+    benchmark := flag.String("alg", "grahamscan", "Selects algorithm (grahamscan or jarvismarch)")
+    flag.Parse()
+
+    switch *benchmark {
+    case "grahamscan":
+        benchmark1(*n, *filename)
+    case "jarvismarch":
+        benchmark2(*n, *filename)
+    default:
+        fmt.Println("Invalid algorithm. Please choose 'grahamscan' or 'jarvismarch'.")
+    }
 
     /*
 	// Testing points (you can comment this out and use random points instead)
