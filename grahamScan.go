@@ -4,21 +4,20 @@
 package main
 
 import (
-	"fmt"
+    "fmt"
 	"math"
 	"math/rand"
     "time"
 	"sort"
+    "grahamScan/visualizer"
+    "grahamScan/geometry"
 )
 
-type Point struct{
-    x, y float64
-}
 
 // polar angle of two points
-func polarAngle(a, b Point) float64 {
+func polarAngle(a, b geometry.Point) float64 {
     // θ = arctan(y/x). 
-    return math.Atan2(b.y - a.y, b.x - a.x)
+    return math.Atan2(b.Y - a.Y, b.X - a.X)
 }
 
 /*
@@ -35,19 +34,19 @@ func polarAngle(a, b Point) float64 {
 
 */
 
-func orientation(A, B, C Point) float64{
+func orientation(A, B, C geometry.Point) float64{
     // this is the det of the matrix
-    return (B.x*C.y + A.x*B.y + A.y*C.x) - (A.y*B.x + B.y*C.x + A.x*C.y)
+    return (B.X*C.Y + A.X*B.Y + A.Y*C.X) - (A.Y*B.X + B.Y*C.X + A.X*C.Y)
 }
 
-func grahamScan(points []Point) []Point {
+func grahamScan(points []geometry.Point) []geometry.Point {
 
     // find y lowest point.
     sort.Slice(points, func(i, j int) bool{
-        if points[i].y == points[j].y {
-            return points[i].x < points[j].x
+        if points[i].Y == points[j].Y {
+            return points[i].X < points[j].X
         }
-        return points[i].y < points[j].y
+        return points[i].Y < points[j].Y
     })
 
     y_lowest := points[0]
@@ -59,7 +58,7 @@ func grahamScan(points []Point) []Point {
 
     // starting line made of first point: y_lowest and the one that forms the
     // lower polar angle.
-    hull_list := []Point{y_lowest, points[1]}
+    hull_list := []geometry.Point{y_lowest, points[1]}
 
     // iterate trough each point.
     for i := 2; i < len(points); i++ {
@@ -79,21 +78,73 @@ func grahamScan(points []Point) []Point {
     return hull_list
 }
 
-func GenerateRandomPoints(n int) []Point {
+func GenerateRandomPoints(n int) []geometry.Point {
     rand.Seed(time.Now().UnixNano()) // Seed the random number generator.
-    points := make([]Point, n)
+    points := make([]geometry.Point, n)
 
     for i := 0; i < n; i++ {
-        points[i] = Point{
-            x: rand.Float64()*200 - 10000, // Generate a random float between -100 and 100 for X.
-            y: rand.Float64()*200 - 10000, // Generate a random float between -100 and 100 for Y.
+        points[i] = geometry.Point{
+            X: rand.Float64()*200 - 10000, // Generate a random float between -100 and 100 for X.
+            Y: rand.Float64()*200 - 10000, // Generate a random float between -100 and 100 for Y.
         }
     }
 
     return points
 }
 
+
+func benchmark(n int) {
+    startTime := time.Now()
+    points := GenerateRandomPoints(n)
+    elapsedTime := time.Since(startTime)
+    fmt.Printf("Generated %d random points in %s\n", n, elapsedTime)
+
+    startTime = time.Now()
+    hull_list := grahamScan(points)
+    elapsedTime = time.Since(startTime)
+    fmt.Printf("Generated hull in %s with %d points\n", elapsedTime, len(hull_list))
+
+    p, err := visualizer.CreatePlot(points, hull_list)
+    if err != nil {
+        panic(err)
+    }
+
+    if err := visualizer.SavePlot(p, "hull.png"); err != nil {
+        panic(err)
+    }
+
+    fmt.Println("Plot saved as hull.png")
+}
+
 func main(){
+
+    n := 10
+    benchmark(n)
+
+    /*
+	// Testing points (you can comment this out and use random points instead)
+	points := []Point{{0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3}}
+
+	// Generate random points if needed
+	// n := 100 // Number of points
+	// points := GenerateRandomPoints(n)
+
+	hull_list := grahamScan(points)
+
+	// Create and save the plot
+	p, err := createPlot(points, hull_list)
+	if err != nil {
+		panic(err)
+	}
+
+	if err := savePlot(p, "hull.png"); err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Plot saved as hull.png")
+    */
+
+
     /*
     // for some testing  (geogebra)
     points := []Point{{0, 3}, {1, 1}, {2, 2}, {4, 4},
@@ -110,6 +161,8 @@ func main(){
         Generated hull in 2m36.6532265s with 48 points
     */
 
+    // testing benchmark
+    /*
     n := 100000000
     
     startTime := time.Now()
@@ -125,4 +178,5 @@ func main(){
     fmt.Printf("Generated hull in %s with %d points\n", elapsedTime, len(hull_list))
 
     //fmt.Println(hull_list)
+    */
 }
