@@ -1,5 +1,3 @@
-// testing on geogebra
-// plist = {(0,3),(1,1),(2,2),(4,4),(0,0),(1,2),(3,1),(3,3)}
 package main
 
 import (
@@ -14,18 +12,15 @@ import (
 )
 
 func benchmark(n int, filename string, algorithm string) {
-    // Check if the filename has a .png extension
     if filepath.Ext(filename) != ".png" {
         filename += ".png"
     }
 
-    // Generate random points
     startTime := time.Now()
     points := algorithms.GenerateRandomPoints(n)
     elapsedTime := time.Since(startTime)
     fmt.Printf("Generated %d random points in %s\n", n, elapsedTime)
 
-    // Determine the algorithm to use
     var hull_list []geometry.Point
     var alg_print_string string //used for beauty printing
 
@@ -44,7 +39,6 @@ func benchmark(n int, filename string, algorithm string) {
     elapsedTime = time.Since(startTime)
     fmt.Printf("Using algorithm: %s \nGenerated hull in %s with %d points\n", alg_print_string, elapsedTime, len(hull_list))
 
-    // Create and save the plot
     p, err := visualizer.CreatePlot(points, hull_list)
     if err != nil {
         panic(err)
@@ -66,6 +60,9 @@ func main(){
 
     benchmark(*n, *filename, *benchmark_algorithm)
 
+
+    // testing on geogebra
+    // plist = {(0,3),(1,1),(2,2),(4,4),(0,0),(1,2),(3,1),(3,3)}
 
     /*
 	// Testing points (you can comment this out and use random points instead)
