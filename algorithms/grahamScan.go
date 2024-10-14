@@ -1,13 +1,13 @@
 package algorithms
 
-import(
+import (
+	"fmt"
+	"grahamScan/geometry"
 	"math"
 	"math/rand"
-    "time"
 	"sort"
-    "grahamScan/geometry"
+	"time"
 )
-
 
 // polar angle of two points
 func polarAngle(a, b geometry.Point) float64 {
@@ -26,7 +26,6 @@ func polarAngle(a, b geometry.Point) float64 {
 
  ** det < 0 -> polygon is oriented CW
  ** det > 0 -> polygon is oriented CCW
-
 */
 
 func orientation(A, B, C geometry.Point) float64{
@@ -35,6 +34,10 @@ func orientation(A, B, C geometry.Point) float64{
 }
 
 func GrahamScan(points []geometry.Point) []geometry.Point {
+    if len(points) < 3{
+        fmt.Print("a hull with less than 3 points is not that possible\n")
+        return points
+    }
 
     // find y lowest point.
     sort.Slice(points, func(i, j int) bool{
