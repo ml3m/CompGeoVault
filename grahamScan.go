@@ -35,7 +35,7 @@ func benchmark(n int) {
 
 func main(){
 
-    n := 10
+    n := 2
     benchmark(n)
 
     /*
