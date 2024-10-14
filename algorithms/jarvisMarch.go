@@ -21,6 +21,7 @@ func JarvisMarch(points []geometry.Point) []geometry.Point {
 	}
 
 	p := y_leftmost
+
 	for {
 		hull_list = append(hull_list, points[p])
 		q := (p + 1) % len(points) // next point in the list
