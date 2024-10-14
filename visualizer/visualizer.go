@@ -1,11 +1,13 @@
 package visualizer
 
 import (
-    "grahamScan/geometry"
-
+    "image/color"
+    
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/plotter"
 	"gonum.org/v1/plot/vg"
+
+    "grahamScan/geometry"
 )
 
 // CreatePlot initializes and configures the plot
@@ -41,7 +43,8 @@ func AddPointsToPlot(p *plot.Plot, points []geometry.Point) error {
     if err != nil {
         return err
     }
-    scatter.GlyphStyle.Radius = vg.Points(3)
+    scatter.GlyphStyle.Radius = vg.Points(5) // increase point size
+    scatter.GlyphStyle.Color = color.RGBA{R: 0, G: 0, B: 255, A: 255} // blue color
 
     p.Add(scatter)
     return nil
