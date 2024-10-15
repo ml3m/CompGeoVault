@@ -71,5 +71,8 @@ func AddHullToPlot(p *plot.Plot, hull_list []geometry.Point) error {
 
 // SavePlot saves the plot to a PNG file
 func SavePlot(p *plot.Plot, filename string) error {
+
+    // 1536 x 1536 res
     return p.Save(16*vg.Inch, 16*vg.Inch, filename)
+
 }
