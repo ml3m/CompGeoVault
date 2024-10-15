@@ -51,15 +51,27 @@ func benchmark(n int, filename string, algorithm string) {
     fmt.Printf("Plot saved as %s\n", filename)
 }
 
+func multipleRunBenchmark(running_time int, n int, filename string, benchmark_algorithm string){
+
+	for i := 0; i < running_time; i++ {
+		fmt.Printf("Executing iteration %d\n", i+1)
+		iterFilename := fmt.Sprintf("%s_%d", filename, i+1)
+		benchmark(n, iterFilename, benchmark_algorithm)
+	}
+
+}
+
 func main(){
 
-    n := flag.Int("n", 50, "Number of random points to generate")
-    filename := flag.String("f", "hull.png", "Output .png filename for the plot")
-    benchmark_algorithm := flag.String("alg", "grahamscan", "Selects algorithm (grahamscan or jarvismarch)")
-    flag.Parse()
+	n := flag.Int("n", 50, "Number of random points to generate")
+	filename := flag.String("f", "hull", "Output filename prefix for the plot (without extension)")
+	benchmark_algorithm := flag.String("alg", "grahamscan", "Selects algorithm (grahamscan or jarvismarch)")
+	flag.Parse()
 
-    benchmark(*n, *filename, *benchmark_algorithm)
+    multipleRunBenchmark(25, *n, *filename, *benchmark_algorithm, )
 
+    //standard run
+    // benchmark(*n, *filename, *benchmark_algorithm)
 
     // testing on geogebra
     // plist = {(0,3),(1,1),(2,2),(4,4),(0,0),(1,2),(3,1),(3,3)}
