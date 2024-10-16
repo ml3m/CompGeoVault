@@ -1,7 +1,7 @@
 package algorithms
 
 import (
-	"grahamScan/geometry"
+	"compgeovault/geometry"
 )
 
 func JarvisMarch(points []geometry.Point) []geometry.Point {

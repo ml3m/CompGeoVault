@@ -1,4 +1,4 @@
-module grahamScan
+module compgeovault
 
 go 1.23.2
 

@@ -7,9 +7,9 @@ import (
 	"fmt"
     "os"
 
-	"grahamScan/algorithms"
-	"grahamScan/geometry"
-	"grahamScan/visualizer"
+	"compgeovault/algorithms"
+	"compgeovault/geometry"
+	"compgeovault/visualizer"
 
 	"gonum.org/v1/plot"
 )

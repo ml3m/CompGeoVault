@@ -2,7 +2,7 @@ package algorithms
 
 import (
 	"fmt"
-	"grahamScan/geometry"
+	"compgeovault/geometry"
 	"sort"
 )
 

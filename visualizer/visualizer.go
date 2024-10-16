@@ -7,8 +7,8 @@ import (
 	"gonum.org/v1/plot/plotter"
 	"gonum.org/v1/plot/vg"
 
-	"grahamScan/algorithms"
-	"grahamScan/geometry"
+	"compgeovault/algorithms"
+	"compgeovault/geometry"
 )
 
 // creates a plot for the Delaunay triangulation, it may be used for other algorithms in the future.

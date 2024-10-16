@@ -6,9 +6,8 @@ import (
 	"time"
     "fmt"
 
-    "grahamScan/geometry"
+    "compgeovault/geometry"
 )
-
 // polar angle of two points
 func polarAngle(a, b geometry.Point) float64 {
     // θ = arctan(y/x). 
