@@ -96,7 +96,7 @@ func multipleRunBenchmark(running_time int, n int, filename string, benchmark_al
 
 func main(){
     n := flag.Int("n", 50, "Number of random points to generate")
-    filename := flag.String("f", "hull.png", "Output .png filename for the plot")
+    filename := flag.String("f", "output_plot.png", "Output .png filename for the plot")
     benchmark_algorithm := flag.String("alg", "grahamscan", "Selects algorithm (grahamscan or jarvismarch)")
 
     flag.Parse()
