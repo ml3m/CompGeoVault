@@ -33,7 +33,7 @@ O(nlogn), primarily due to the sorting step.
 1. **Graham's Scan**:
    - An efficient algorithm for computing the Convex Hull of a set of points.
    <div align="center">
-     <img src="images/graham_scan_example.png" alt="Graham's Scan Example" width="500"/>
+     <img src="images/grahamscan_example.png" alt="Graham's Scan Example" width="500"/>
    </div>
 
 ### Triangulation Example
