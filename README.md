@@ -53,7 +53,7 @@ go build
 
 ## Usage
 ```bash
-benchmark -n <number> -f <filename> -alg <algorithm>
+./compgeovault -n <number> -f <filename> -alg <algorithm>
 ```
 ### Options:
 - -n   : Number of points or vertices to generate (default: 50)
