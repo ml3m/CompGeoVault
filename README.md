@@ -29,18 +29,19 @@ O(nlogn), primarily due to the sorting step.
 - Time Complexity:
 - 𝑂(𝑛log𝑛)
 
-### Convex Hull Example
-1. **Graham's Scan**:
-   - An efficient algorithm for computing the Convex Hull of a set of points.
-   <div align="center">
-     <img src="images/grahamscan_example.png" alt="Graham's Scan Example" width="500"/>
-   </div>
 
 ### Triangulation Example
-3. **Delaunay Triangulation**:
+1. **Delaunay Triangulation**:
    - A triangulation of a set of points such that no point is inside the circumcircle of any triangle.
    <div align="center">
      <img src="images/delaunay_example.png" alt="Delaunay Triangulation Example" width="500"/>
+   </div>
+
+### Convex Hull Example
+2. **Graham's Scan**:
+   - An efficient algorithm for computing the Convex Hull of a set of points.
+   <div align="center">
+     <img src="images/grahamscan_example.png" alt="Graham's Scan Example" width="500"/>
    </div>
 
 ## Installation
