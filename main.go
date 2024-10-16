@@ -1,137 +1,104 @@
 package main
 
 import (
-	"flag"
-	"fmt"
-	"time"
     "path/filepath"
+	"flag"
+    "time"
+	"fmt"
+    "os"
 
 	"grahamScan/algorithms"
+	"grahamScan/geometry"
 	"grahamScan/visualizer"
-    "grahamScan/geometry"
+
+	"gonum.org/v1/plot"
 )
 
 func benchmark(n int, filename string, algorithm string) {
-    if filepath.Ext(filename) != ".png" {
+    if filepath.Ext(filename) != ".png" { // make sure filename has .png
         filename += ".png"
     }
 
+    if algorithm != "grahamscan" && algorithm != "jarvismarch" && algorithm != "delaunay" {
+        fmt.Println("Invalid algorithm specified.")
+        algorithms.PrintUsage()
+        os.Exit(1)
+    }
+
+    var elapsedTime time.Duration
+    var points []geometry.Point
+    var vertices []algorithms.Vertex
+
+    // time each generation depending on triangulation or convex hull
     startTime := time.Now()
-    points := algorithms.GenerateRandomPoints(n)
-    elapsedTime := time.Since(startTime)
-    fmt.Printf("Generated %d random points in %s\n", n, elapsedTime)
+    if algorithm == "delaunay" {
+        vertices = algorithms.GenerateRandomVertices(n)
+        elapsedTime = time.Since(startTime)
+        fmt.Printf("Generated %d random vertices in %s\n", n, elapsedTime)
+    } else {
+        points = algorithms.GenerateRandomPoints(n)
+        elapsedTime = time.Since(startTime)
+        fmt.Printf("Generated %d random points in %s\n", n, elapsedTime)
+    }
 
     var hull_list []geometry.Point
+    var triangles []algorithms.Triangle
     var alg_print_string string //used for beauty printing
 
     startTime = time.Now()
     switch algorithm {
-    case "grahamscan":
-        alg_print_string = "GrahamScan"
-        hull_list = algorithms.GrahamScan(points)
-    case "jarvismarch":
-        alg_print_string = "JarvisMarch"
-        hull_list = algorithms.JarvisMarch(points)
-    default:
-        fmt.Println("Invalid algorithm. Please choose 'grahamscan' or 'jarvismarch'.")
-        return
+        case "grahamscan":
+            alg_print_string = "GrahamScan"
+            hull_list = algorithms.GrahamScan(points)
+        case "jarvismarch":
+            alg_print_string = "JarvisMarch"
+            hull_list = algorithms.JarvisMarch(points)
+        case "delaunay":
+            // work in progress
+            alg_print_string = "Delaunay Triangulation"
+            triangles = algorithms.Delaunay(vertices)
+        default:
+            fmt.Println("Invalid algorithm. Please choose 'grahamscan' or 'jarvismarch'.")
+            return
     }
     elapsedTime = time.Since(startTime)
-    fmt.Printf("Using algorithm: %s \nGenerated hull in %s with %d points\n", alg_print_string, elapsedTime, len(hull_list))
 
-    p, err := visualizer.CreatePlot(points, hull_list)
-    if err != nil {
-        panic(err)
+    // prints triangulation count or hull points count
+    if algorithm == "delaunay" {
+        fmt.Printf("Using algorithm: %s \nGenerated triangulation in %s with %d triangles\n", alg_print_string, elapsedTime, len(triangles))
+    } else {
+        fmt.Printf("Using algorithm: %s \nGenerated hull in %s with %d points\n", alg_print_string, elapsedTime, len(hull_list))
     }
 
-    if err := visualizer.SavePlot(p, filename); err != nil {
-        panic(err)
+    // create plot for each type triangulation/hull
+    var p *plot.Plot
+    var err error
+    if algorithm == "delaunay" {
+        p, err = visualizer.CreateDelaunayPlot(vertices, triangles) // Delaunay-specific plot
+    } else {
+        p, err = visualizer.CreatePlot(points, hull_list) // Convex hull-specific plot
     }
+    
+    if err != nil { panic(err) }
+    if err := visualizer.SavePlot(p, filename); err != nil { panic(err)}
 
     fmt.Printf("Plot saved as %s\n", filename)
 }
 
+/* not used for now */
 func multipleRunBenchmark(running_time int, n int, filename string, benchmark_algorithm string){
-
 	for i := 0; i < running_time; i++ {
 		fmt.Printf("Executing iteration %d\n", i+1)
 		iterFilename := fmt.Sprintf("%s_%d", filename, i+1)
 		benchmark(n, iterFilename, benchmark_algorithm)
 	}
-
 }
 
 func main(){
+    n := flag.Int("n", 50, "Number of random points to generate")
+    filename := flag.String("f", "hull.png", "Output .png filename for the plot")
+    benchmark_algorithm := flag.String("alg", "grahamscan", "Selects algorithm (grahamscan or jarvismarch)")
 
-	n := flag.Int("n", 50, "Number of random points to generate")
-	filename := flag.String("f", "hull", "Output filename prefix for the plot (without extension)")
-	benchmark_algorithm := flag.String("alg", "grahamscan", "Selects algorithm (grahamscan or jarvismarch)")
-	flag.Parse()
-
-    multipleRunBenchmark(25, *n, *filename, *benchmark_algorithm, )
-
-    //standard run
-    // benchmark(*n, *filename, *benchmark_algorithm)
-
-    // testing on geogebra
-    // plist = {(0,3),(1,1),(2,2),(4,4),(0,0),(1,2),(3,1),(3,3)}
-
-    /*
-	// Testing points (you can comment this out and use random points instead)
-	points := []Point{{0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3}}
-
-	// Generate random points if needed
-	// n := 100 // Number of points
-	// points := GenerateRandomPoints(n)
-
-	hull_list := grahamScan(points)
-
-	// Create and save the plot
-	p, err := createPlot(points, hull_list)
-	if err != nil {
-		panic(err)
-	}
-
-	if err := savePlot(p, "hull.png"); err != nil {
-		panic(err)
-	}
-
-	fmt.Println("Plot saved as hull.png")
-    */
-
-
-    /*
-    // for some testing  (geogebra)
-    points := []Point{{0, 3}, {1, 1}, {2, 2}, {4, 4},
-                      {0, 0}, {1, 2}, {3, 1}, {3, 3}};
-    */
-
-    // some tests
-    /*
-        ➜  GrahamScan git:(main) ✗ go run grahamScan.go
-        Generated 10000000 random points in 330.75ms
-        Generated hull in 10.916514417s with 43 points
-
-        Generated 100000000 random points in 4.033935417s
-        Generated hull in 2m36.6532265s with 48 points
-    */
-
-    // testing benchmark
-    /*
-    n := 100000000
-    
-    startTime := time.Now()
-    points := GenerateRandomPoints(n)
-    elapsedTime := time.Since(startTime) 
-
-    fmt.Printf("Generated %d random points in %s\n", n, elapsedTime)
-
-    startTime = time.Now()
-    hull_list := grahamScan(points)
-    elapsedTime = time.Since(startTime) 
-
-    fmt.Printf("Generated hull in %s with %d points\n", elapsedTime, len(hull_list))
-
-    //fmt.Println(hull_list)
-    */
+    flag.Parse()
+    benchmark(*n, *filename, *benchmark_algorithm)
 }
