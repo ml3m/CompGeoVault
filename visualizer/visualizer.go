@@ -46,7 +46,7 @@ func addVoronoiEdgesToPlot(p *plot.Plot, cells []algorithms.VoronoiCell) error {
             }
 
             line.LineStyle.Width = vg.Points(1)
-            line.LineStyle.Color = color.RGBA{R: 0, G: 255, B: 0, A: 255} // Color for Voronoi edges
+            line.LineStyle.Color = color.RGBA{R: 255, G: 0, B: 0, A: 255} // Color for Voronoi edges
             p.Add(line)
         }
     }
