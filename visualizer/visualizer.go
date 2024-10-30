@@ -11,6 +11,49 @@ import (
 	"compgeovault/geometry"
 )
 
+// Creates a plot for the Voronoi diagram using the vertices and cells generated
+func CreateVoronoiPlot(vertices []algorithms.Vertex, voronoiCells []algorithms.VoronoiCell) (*plot.Plot, error) {
+    p := plot.New()
+    p.Title.Text = "Voronoi Diagram"
+    p.X.Label.Text = "X"
+    p.Y.Label.Text = "Y"
+
+    // Add vertices as points
+    if err := addPointsToPlot(p, vertices, color.RGBA{R: 0, G: 0, B: 255, A: 255}); err != nil {
+        return nil, err
+    }
+
+    // Add Voronoi edges
+    if err := addVoronoiEdgesToPlot(p, voronoiCells); err != nil {
+        return nil, err
+    }
+
+    return p, nil
+}
+
+// Adds Voronoi edges to the plot by connecting circumcenters for each cell
+func addVoronoiEdgesToPlot(p *plot.Plot, cells []algorithms.VoronoiCell) error {
+    for _, cell := range cells {
+        for _, edge := range cell.Edges {
+            edgeLineData := plotter.XYs{
+                {X: edge.Start.X, Y: edge.Start.Y},
+                {X: edge.End.X, Y: edge.End.Y},
+            }
+
+            line, err := plotter.NewLine(edgeLineData)
+            if err != nil {
+                return err
+            }
+
+            line.LineStyle.Width = vg.Points(1)
+            line.LineStyle.Color = color.RGBA{R: 0, G: 255, B: 0, A: 255} // Color for Voronoi edges
+            p.Add(line)
+        }
+    }
+    return nil
+}
+
+
 // creates a plot for the Delaunay triangulation, it may be used for other algorithms in the future.
 func CreateDelaunayPlot(points []algorithms.Vertex, triangles []algorithms.Triangle) (*plot.Plot, error) {
     p := plot.New() // Create a new plot
