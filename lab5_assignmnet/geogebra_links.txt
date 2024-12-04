@@ -1,0 +1,6 @@
+1. ConvexHull of the given points using Geogebra:
+link: https://www.geogebra.org/classic/gfjapktq
+
+
+The other exercises are implementation-based.
+can be seen in the repository.

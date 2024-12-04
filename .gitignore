@@ -1,1 +1,53 @@
-*.png
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# VS Code settings
+.vscode/
+
+# PyCharm settings
+.idea/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Python egg info
+*.egg-info/
+*.egg
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pytest
+.cache/
+
+# Coverage reports
+*.cover
+*.coverage
+.coverage.*
+*.hypothesis/
+
+# Build directories
+build/
+dist/
+
+# Temporary files
+*.log
+*.pot
+*.pyc
+*.pyo
+*.swp
+
+# Cython debug symbols
+cython_debug/
