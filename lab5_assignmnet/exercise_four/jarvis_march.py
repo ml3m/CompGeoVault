@@ -6,12 +6,10 @@ import os
 # Ensure the outputs directory exists
 os.makedirs('outputs', exist_ok=True)
 
-
 class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-
 
 def orientation(p, q, r):
     """Return the orientation of the triplet (p, q, r).
@@ -20,13 +18,19 @@ def orientation(p, q, r):
     2 -> Counterclockwise
     """
     val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y)
+    
+    # Print the orientation test
+    print(f"Orientation test: p({p.x}, {p.y}), q({q.x}, {q.y}), r({r.x}, {r.y}) -> ", end="")
+    
     if val == 0:
+        print("Collinear")
         return 0
     elif val > 0:
+        print("Clockwise")
         return 1
     else:
+        print("Counterclockwise")
         return 2
-
 
 def jarvis_march(points):
     """Perform the Jarvis March algorithm on a set of points."""
@@ -62,7 +66,6 @@ def jarvis_march(points):
             break
 
     return hull, steps
-
 
 def plot_hull(step_idx, points, hull, steps):
     ax.clear()
@@ -104,10 +107,13 @@ hull, steps = jarvis_march(points)
 
 # Create plot and animation
 fig, ax = plt.subplots()
-animation = FuncAnimation(fig, plot_hull, frames=len(steps), fargs=(points, hull, steps), repeat=False)
+
+# Set the animation speed to slower (1 second per frame)
+animation = FuncAnimation(fig, plot_hull, frames=len(steps), fargs=(points, hull, steps), repeat=False, interval=800)
 
 # Ensure the steps list is not empty before saving
 if steps:
-    animation.save('outputs/jarvis_march_animation.gif', writer='pillow', fps=2)
+    animation.save('outputs/jarvis_march_animation.gif', writer='pillow', fps=1)
 
 plt.show()
+plt.tight_layout()
