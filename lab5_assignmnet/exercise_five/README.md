@@ -18,7 +18,7 @@ This implementation uses Andrew's variant of Graham's scan to find the lower con
 - Tracks the evolution of hull vertices
 
 ## Visualization Lower Convex Hull Formation after Andrew's Graham's Scan Variant
-![Lower Convex Hull Formation Animation](lower_hull_animation.gif)
+![Lower Convex Hull Formation Animation](./lower_hull_animation.gif)
 
 Visualization shows:
 - Blue points: Original point set
