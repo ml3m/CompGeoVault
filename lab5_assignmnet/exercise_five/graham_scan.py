@@ -43,7 +43,7 @@ def andrew_convex_hull(points):
     
     return lower, steps
 
-def visualize_convex_hull():
+def visualize_convex_hull(save_gif=True):
     points = [(1, 10), (-2, 7), (3, 8), (4, 10), (5, 7), (6, 7), (7, 11)]
     
     lower_hull, steps = andrew_convex_hull(points)
@@ -88,6 +88,9 @@ def visualize_convex_hull():
     
     frames = len(steps)
     ani = animation.FuncAnimation(fig, update, frames=frames, interval=1000)
+    
+    if save_gif:
+        ani.save('convex_hull.gif', writer='pillow', fps=1)
     
     plt.tight_layout()
     plt.show()
