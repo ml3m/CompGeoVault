@@ -15,7 +15,7 @@ and Triangulations of a set of points in a 2D space.
 ### 1. Graham Scan
 - An efficient algorithm for computing the Convex Hull of a set of points.
 - Time Complexity: 
-- 𝑂(𝑛log𝑛)
+- O(nlogn)
 
 O(nlogn), primarily due to the sorting step.
 
@@ -27,7 +27,7 @@ O(nlogn), primarily due to the sorting step.
 ### 3. Delaunay Triangulation
 - A triangulation of a set of points such that no point is inside the circumcircle of any triangle.
 - Time Complexity:
-- 𝑂(𝑛log𝑛)
+- O(nlogn)
 
 
 ### Triangulation Example
