@@ -51,3 +51,6 @@ dist/
 
 # Cython debug symbols
 cython_debug/
+
+# Apple's stuff
+.DS_Store
