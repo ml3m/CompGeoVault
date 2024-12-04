@@ -48,17 +48,3 @@ In this visualization:
 - Red points highlight the convex hull vertices
 - The red line connects the convex hull points
 
-## Usage
-
-```python
-points = [(0,3), (2,2), (1,1), (2,1), (3,0), (0,0), (3,3)]
-convex_hull = quickhull(points)
-print("Convex Hull Points:", convex_hull) # shows points. you can also plot them in matplotlib ui.
-```
-
-## References
-
-1. Barber, C. Bradford, et al. "The quickhull algorithm for convex hulls." ACM
-   Transactions on Mathematical Software (TOMS) 22.4 (1996): 469-483.
-2. Preparata, Franco P., and Michael I. Shamos. "Computational geometry: an
-   introduction." Springer Science & Business Media, 1985.

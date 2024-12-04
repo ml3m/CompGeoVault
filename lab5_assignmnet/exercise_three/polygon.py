@@ -16,7 +16,7 @@ def compute_polygon(points):
 
 def plot_polygon(points, polygon):
     """
-    Plot the points and the computed polygon.
+    Plot the points and the computed polygon, with vertex coordinates.
     """
     # Plot all points
     x, y = zip(*points)
@@ -27,10 +27,14 @@ def plot_polygon(points, polygon):
     px, py = zip(*polygon)
     plt.plot(px, py, label="Polygon", color="green")
 
+    # Annotate each vertex with its coordinates
+    for i, (x, y) in enumerate(polygon[:-1]):  # Skip the repeated last point
+        plt.annotate(f"({x}, {y})", (x, y), textcoords="offset points", xytext=(5, 5), fontsize=10, color="red")
+
     # Customize and show the plot
     plt.xlabel("X")
     plt.ylabel("Y")
-    plt.title("Polygon Containing All Points")
+    plt.title("Polygon Containing All Points with Vertex Coordinates")
     plt.legend()
     plt.grid(True)
     plt.show()

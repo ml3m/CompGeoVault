@@ -43,7 +43,7 @@ def jarvis_march(points):
     for i in range(1, n):
         if points[i].x < points[leftmost].x:
             leftmost = i
-        elif points[i].x == points[leftmost].x:
+        elif points[i].x == leftmost:
             if points[i].y > points[leftmost].y:
                 leftmost = i
 
@@ -90,6 +90,11 @@ def plot_hull(step_idx, points, hull, steps):
     # Plot hull
     ax.plot(hx, hy, 'r-', lw=2, label='Convex Hull')
 
+    # Annotate hull points with coordinates
+    for point in hull_points[:-1]:  # Skip the repeated first/last point
+        ax.annotate(f"({point.x}, {point.y})", (point.x, point.y),
+                    textcoords="offset points", xytext=(5, 5), fontsize=10, color="red")
+
     ax.set_xlim(-1, 6)
     ax.set_ylim(-2, 4)
     ax.set_title(f'Jarvis March Step {step_idx + 1}')
@@ -97,7 +102,6 @@ def plot_hull(step_idx, points, hull, steps):
     ax.set_ylabel('Y-axis')
     ax.legend()
     ax.grid(True)
-
 
 # Points array
 points = [Point(2, -1), Point(1, 3), Point(4, 0), Point(4, 3), Point(5, 2)]

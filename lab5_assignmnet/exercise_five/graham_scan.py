@@ -58,12 +58,20 @@ def visualize_convex_hull(save_gif=True):
         x, y = zip(*step['points'])
         ax.scatter(x, y, color='blue', label='Points')
         
+        # Annotate all points
+        for px, py in step['points']:
+            ax.annotate(f"({px}, {py})", (px, py), textcoords="offset points", xytext=(5, 5), fontsize=8)
+        
         current = step['current']
         ax.scatter(current[0], current[1], color='red', s=100, label='Current Point')
         
         if step['lower']:
             lx, ly = zip(*step['lower'])
             ax.plot(lx, ly, color='green', marker='o', linestyle='-', linewidth=2, label='Lower Hull')
+            
+            # Annotate lower hull points
+            for px, py in step['lower']:
+                ax.annotate(f"({px}, {py})", (px, py), textcoords="offset points", xytext=(5, -10), fontsize=8, color='green')
             
             # Create polygon for coloring the area above the lower hull
             max_y = max(y) + 5
