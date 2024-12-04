@@ -42,8 +42,9 @@ of points in counter-clockwise order around the centroid.
 
 Given the points:
 
-``` P1 = (4, 2) P2 = (7, -1) P3 = (3, -5) P4 = (-3, 6) P5 = (-4, 4) P6 = (-1,
--1) P7 = (-2, -6) ```
+``` 
+P1 = (4, 2) P2 = (7, -1) P3 = (3, -5) P4 = (-3, 6) P5 = (-4, 4) P6 = (-1,-1) P7 = (-2, -6) 
+```
 
 The algorithm computes a convex polygon that encloses all the points.
 
