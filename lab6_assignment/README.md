@@ -51,7 +51,7 @@ This repository contains solutions and implementations for computational geometr
 
 ### **Fortune's Sweep Line Implementation**:
   - [Code: `fortunes_sweep_line_voronoi/fortunes_sweeping_line.py`](./fortunes_sweep_line_voronoi/fortunes_sweeping_line.py)
-  - ![Fortune's Sweep Line Voronoi Animation](./fortunes_demo_animation.gif)
+  - ![Fortune's Sweep Line Voronoi Animation](fortunes_sweep_line_voronoi/fortunes_demo_animation.gif)
 
 ### Exercise 1
 **Problem**: Determine the Voronoi diagram and Delaunay triangulation for the points:  
