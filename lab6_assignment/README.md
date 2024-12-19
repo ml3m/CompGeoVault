@@ -124,3 +124,4 @@ Install them with:
 ```bash
 pip install -r requirements.txt
 ```
+- ![video](./fortunes_sweep_line_voronoi/Screen Recording 2024-12-19 at 22.19.54.mov)
