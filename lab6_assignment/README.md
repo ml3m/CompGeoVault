@@ -49,6 +49,10 @@ This repository contains solutions and implementations for computational geometr
 
 ## Exercises
 
+### **Fortune's Sweep Line Implementation**:
+  - [Code: `fortunes_sweep_line_voronoi/fortunes_sweeping_line.py`](./fortunes_sweep_line_voronoi/fortunes_sweeping_line.py)
+  - ![Fortune's Sweep Line Voronoi Animation](fortunes_demo_animation.gif)
+
 ### Exercise 1
 **Problem**: Determine the Voronoi diagram and Delaunay triangulation for the points:  
 A = (3, 5), B = (6, 6), C = (6, 4), D = (9, 5), and E = (9, 7).  
@@ -109,7 +113,6 @@ A = (3, 5), B = (6, 6), C = (6, 4), D = (9, 5), and E = (9, 7).
 
 - **Fortune's Sweep Line Implementation**:
   - [Code: `fortunes_sweep_line_voronoi/fortunes_sweeping_line.py`](./fortunes_sweep_line_voronoi/fortunes_sweeping_line.py)
-  - [Demo Video: `fortunes_sweep_line_voronoi/Screen Recording 2024-12-19 at 22.19.54.mov`](./fortunes_sweep_line_voronoi/Screen%20Recording%202024-12-19%20at%2022.19.54.mov)
 
 - **References and Links**:  
   - [Geogebra Links: `geogebra_links.txt`](./geogebra_links.txt)
@@ -124,4 +127,3 @@ Install them with:
 ```bash
 pip install -r requirements.txt
 ```
-- ![video](./fortunes_sweep_line_voronoi/Screen Recording 2024-12-19 at 22.19.54.mov)
