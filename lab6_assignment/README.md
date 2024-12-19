@@ -15,6 +15,7 @@ This repository contains solutions and implementations for computational geometr
    - [Exercise 6](#exercise-6)
 3. [Requirements](#requirements)
 
+
 ---
 
 ## How to Use
@@ -55,7 +56,7 @@ A = (3, 5), B = (6, 6), C = (6, 4), D = (9, 5), and E = (9, 7).
 **Files**:
 - [Code: `exercise_one/implement.py`](./exercise_one/implement.py)
 - [Voronoi Functionality: `exercise_one/voronoi.py`](./exercise_one/voronoi.py)
-- [Visualization: `exercise_one/3graphs_exercise_1.png`](./exercise_one/3graphs_exercise_1.png)
+- ![Exercise 1 Visualization](./exercise_one/3graphs_exercise_1.png)
 
 ---
 
@@ -64,7 +65,7 @@ A = (3, 5), B = (6, 6), C = (6, 4), D = (9, 5), and E = (9, 7).
 
 **Files**:
 - [Code: `exercise_two/implementation.py`](./exercise_two/implementation.py)
-- [Explanation: `exercise_two/ex_2.png`](./exercise_two/ex_2.png)
+- ![Exercise 2 Visualization](./exercise_two/ex_2.png)
 
 ---
 
@@ -73,7 +74,7 @@ A = (3, 5), B = (6, 6), C = (6, 4), D = (9, 5), and E = (9, 7).
 
 **Files**:
 - [Code: `exercise_three/minimum_spanning_tree_lambda.py`](./exercise_three/minimum_spanning_tree_lambda.py)
-- [Explanation: `exercise_three/ex3_2.png`](./exercise_three/ex3_2.png)
+- ![Exercise 3 Visualization](./exercise_three/ex3_2.png)
 
 ---
 
@@ -82,7 +83,7 @@ A = (3, 5), B = (6, 6), C = (6, 4), D = (9, 5), and E = (9, 7).
 
 **Files**:
 - [Code: `exercise_four/implementation.py`](./exercise_four/implementation.py)
-- [Visualization: `exercise_four/ex4.png`](./exercise_four/ex4.png)
+- ![Exercise 4 Visualization](./exercise_four/ex4.png)
 
 ---
 
@@ -91,7 +92,7 @@ A = (3, 5), B = (6, 6), C = (6, 4), D = (9, 5), and E = (9, 7).
 
 **Files**:
 - [Code: `exercise_five/implementation.py`](./exercise_five/implementation.py)
-- [Visualization: `exercise_five/ex5.png`](./exercise_five/ex5.png)
+- ![Exercise 5 Visualization](./exercise_five/ex5.png)
 
 ---
 
@@ -100,7 +101,7 @@ A = (3, 5), B = (6, 6), C = (6, 4), D = (9, 5), and E = (9, 7).
 
 **Files**:
 - [Code: `exercise_six/implementation.py`](./exercise_six/implementation.py)
-- [Visualization: `exercise_six/ex6.png`](./exercise_six/ex6.png)
+- ![Exercise 6 Visualization](./exercise_six/ex6.png)
 
 ---
 
