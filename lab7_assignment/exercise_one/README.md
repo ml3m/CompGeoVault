@@ -15,5 +15,5 @@ Apply the method of the art gallery theorem for a polygon P₁P₂...P₁₂, wh
 
 ### Solution Visualization
 ![Solution Visualization](art_gallery_solution.gif)
-# iregular polygon
-![Solution Visualization](iregular.gif)
+# irregular polygon
+![Solution Visualization](irregular.gif)
