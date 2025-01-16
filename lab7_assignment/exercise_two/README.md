@@ -17,5 +17,5 @@ a. A configuration where one camera is sufficient
 b. A configuration where two cameras are necessary and sufficient
 
 ### Solution Visualization
-![Solution Visualization](placeholder.png)
+![Solution Visualization](iregular.gif)
 
