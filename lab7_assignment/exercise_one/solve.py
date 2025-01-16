@@ -298,7 +298,22 @@ polygon = [
     (-70, -40)   # D'
 ]
 
+polygon = [
+    (40, -40),   # P1
+    (-50, 60),   # P2
+    (60, -40),   # P3
+    (-70, 40),   # P4
+    (90, 60),    # P5
+    (110, 60),   # P6
+    (110, -60),  # P7
+    (90, -60),   # P8
+    (-70, -40),  # P9
+    (60, 40),    # P10
+    (-50, -60),  # P11
+    (40, 40)     # P12
+]
+
 vertex_names = ['D', 'B', "A'", "C'", 'E', 'F', "F'", "E'", 'C', 'A', "B'", "D'"]
 
 art_gallery = ArtGalleryProblem(polygon, vertex_names)
-art_gallery.solve(save_gif=True, gif_filename='art_gallery_solution.gif')
+art_gallery.solve(save_gif=True, gif_filename='iregular.gif')
