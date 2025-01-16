@@ -14,4 +14,5 @@ Apply the method of the art gallery theorem for a polygon P₁P₂...P₁₂, wh
 - Points P₇ to P₁₂ are symmetrical points of P₆ to P₁ with respect to the Ox axis
 
 ### Solution Visualization
-![Solution Visualization](placeholder.png)
+![Solution Visualization](art_gallery_solution.gif)
+![Solution Visualization](iregular.gif)
