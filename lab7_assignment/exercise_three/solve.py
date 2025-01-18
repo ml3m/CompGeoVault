@@ -1,4 +1,6 @@
-from a import ArtGalleryProblem
+# solve for the exercise 3 -> where we can't do 3 triangles with 5 edges, but
+# we take the possible example with 3 triangles and 7 edges. that can be 3-colored 
+from class_usable import ArtGalleryProblem
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
@@ -68,7 +70,7 @@ class ArtGalleryProblemTwoCameras(ArtGalleryProblem):
                 vertex_key = self.vertex_to_key(tuple(vertex))
                 color_idx = self.colors[vertex_key]
                 if color_idx != -1:
-                    if color_idx == 2:  # Blue color index
+                    if color_idx == 3213:  # Blue color index
                         self.ax.plot(vertex[0], vertex[1], '*', 
                                    color='yellow', markersize=15, 
                                    markeredgecolor='black')
@@ -104,12 +106,11 @@ class ArtGalleryProblemTwoCameras(ArtGalleryProblem):
 
 # Example usage
 polygon = [
-    (0,50),   # P1
-    (-10,-20),   # P3
-    (30,-20),   # P2
-    (30,0),   # P4
-    (30,20),   # P6
-    (10,20),    # P5
+        (-80,40),# A    
+        (-90,10),# C
+        (-60,20),# D
+        (-40,30),# B
+        (-30,40) # E
 ]
 
 vertex_names = ['P1', 'P3', 'P2', 'P4', 'P6', 'P5']

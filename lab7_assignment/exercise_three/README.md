@@ -10,4 +10,5 @@ Create and visualize a set of points in the plane that admits a triangulation wi
 - Prove 3-colorability of the triangulation graph
 
 ### Solution Visualization
-![Triangulation Graph](placeholder.png)
+- where the polygon has 3 triangles and 7 edges.
+![Triangulation Graph](solve.gif)

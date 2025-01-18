@@ -16,6 +16,8 @@ The solution demonstrates:
 a. A configuration where one camera is sufficient
 b. A configuration where two cameras are necessary and sufficient
 
-### Solution Visualization
-![Solution Visualization](iregular.gif)
+### Solution Visualization a) (where a single camera is sufficient)
+![Solution Visualization](a.gif)
 
+### Solution Visualization b) (where 2 cameras are sufficient)
+![Solution Visualization](b.gif)
