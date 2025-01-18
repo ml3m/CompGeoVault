@@ -5,21 +5,36 @@ This laboratory focuses on various aspects of computational geometry, including 
 ## Directory Structure
 ```
 lab_7/
-├── exercise_one/
-│   ├── README.md
-│   └── placeholder.png
-├── exercise_two/
-│   ├── README.md
-│   └── placeholder.png
-├── exercise_three/
-│   ├── README.md
-│   └── placeholder.png
-├── exercise_four/
-│   ├── README.md
-│   └── output.png
-└── exercise_five/
-    ├── README.md
-    └── animation5.gif
+├── README.md
+├── docs.md
+├── exercise_five
+│   ├── README.md
+│   ├── animation5.gif
+│   └── main.py
+├── exercise_four
+│   ├── README.md
+│   ├── main.py
+│   └── output.png
+├── exercise_one
+│   ├── README.md
+│   ├── art_gallery_solution.gif
+│   ├── irregular.gif
+│   ├── main.py
+│   ├── solve.py
+│   └── triangulatio_based_solve_MINIMUM.py
+├── exercise_three
+│   ├── README.md
+│   ├── class_usable.py
+│   ├── solve.gif
+│   └── solve.py
+├── exercise_two
+│   ├── README.md
+│   ├── a.gif
+│   ├── a.py
+│   ├── b.gif
+│   ├── b.py
+│   └── solve.py
+└── notes_geogebra_ex1.md
 ```
 
 ## Exercises Overview
