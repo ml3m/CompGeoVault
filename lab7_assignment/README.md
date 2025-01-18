@@ -1,4 +1,4 @@
-# Lab 7: Computational Geometry Assignments
+# Lab 7: Computational Geometry Assignment
 
 This laboratory focuses on various aspects of computational geometry, including art gallery problems, triangulations, and graph colorability.
 
